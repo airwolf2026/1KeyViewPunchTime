@@ -1,4 +1,4 @@
-/*Created by DingDang on 2017/3/10.
+﻿/*Created by DingDang on 2017/3/10.
   Copyright © 2017年 DingDang. All rights reserved.*/
   
 chrome.storage.sync.get(['userName', 'password'], function(userInfo) {

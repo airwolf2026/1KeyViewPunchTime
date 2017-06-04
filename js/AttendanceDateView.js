@@ -1,4 +1,4 @@
-  /*Created by DingDang on 2017/3/10.
+﻿  /*Created by DingDang on 2017/3/10.
   Copyright © 2017年 DingDang. All rights reserved.*/
 
 /*自动登录相关*/
@@ -28,7 +28,7 @@ function loginRequest(url, callback){
 }
 
 function loginResult(code){
-    console.log(code);
+    // console.log(code);
     if(code == '1'){
         //登录成功
         console.log(window.location);
@@ -58,7 +58,7 @@ function copySignOffToClipboard() {
     });
 }
 
-var hometUrl = 'domainOfPunchSite';
+var hometUrl = 'http://175.25.19.77:8082/';
 var signOffUrl = hometUrl + "Account/SignOff";
 
 function autoLogin(){
@@ -123,7 +123,7 @@ function showOPResult(result){
 var hasRetryFirstPage = false; //防止无数据时死循环
 function requestAttendanceCallBack(result){
     
-    console.log(result);
+    // console.log(result);
     if(result.indexOf("欢迎登陆《易勤WEB考勤管理软件》V7.0") >= 0)
         autoLogin();    //未登录
     else if(result.indexOf("无数据") >= 0){
@@ -181,9 +181,9 @@ countWorkDays();
 function countWorkDays() {
     var endDate = new Date();
     var beginDate = new Date(endDate.getFullYear(),endDate.getMonth(),1);
-    var workDayVal = (endDate - beginDate)/86400000 + 1;  
-    var remainder = workDayVal % 7;
-    var divisor = Math.floor(workDayVal / 7);  
+    var dayOfMonth = endDate.getDate(); 
+    var remainder = dayOfMonth % 7;
+    var divisor = Math.floor(dayOfMonth / 7);  
     var weekendDay = 2 * divisor;  
       
     var nextDay = beginDate.getDay();  
@@ -204,10 +204,11 @@ function countWorkDays() {
         }  
     }  
     //实际工时（天） = 起止日期差 - 周六日数目。  
-    workDays = workDayVal - weekendDay; 
+    workDays = dayOfMonth - weekendDay; 
 }
 
 var totalPages = Math.floor( workDays / 5) + ((workDays % 5)!= 0 ? 1 : 0);   //5天10条数据一页
+totalPages +=1;//多一天加班多需要
 var currentPage = totalPages;
 requestAttendanceDetail(totalPages);
 

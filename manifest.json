@@ -20,7 +20,7 @@
     },
     "content_scripts": [
                         {
-                            "matches": ["http://domainOfPunchSite/*"],
+                            "matches": ["http://175.25.19.77:8082/*"],
                             "js": ["js/content_script.js"]
                         }
                        ],
